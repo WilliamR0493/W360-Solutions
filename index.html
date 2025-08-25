@@ -23,6 +23,11 @@
             --dark-card: #1e1e1e;
             --dark-text: #e0e0e0;
             --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            
+            /* Glass effect variables */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .dark-mode {
@@ -31,6 +36,8 @@
             --text: var(--dark-text);
             --text-light: #a0a0a0;
             --shadow: var(--dark-shadow);
+            --glass-bg: rgba(30, 30, 30, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
         
         * {
@@ -107,6 +114,8 @@
             z-index: 999;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
         }
         
         .theme-toggle:hover {
@@ -120,15 +129,16 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             box-shadow: var(--shadow);
             padding: 15px 0;
             transition: var(--transition);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
         }
         
         .dark-mode header {
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(30, 30, 30, 0.7);
         }
         
         header.scrolled {
@@ -227,6 +237,12 @@
         
         .hero-text {
             width: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
         }
         
         .hero-image {
@@ -290,14 +306,41 @@
             gap: 15px;
         }
         
-        /* Canvas Backgrounds */
-        .canvas-background {
+        /* Image Styling */
+        .glass-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .glass-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .glass-image::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+        
+        .glass-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .glass-image:hover img {
+            transform: scale(1.05);
         }
         
         /* Services Section */
@@ -350,14 +393,16 @@
         }
         
         .service-card {
-            background: var(--white);
-            border-radius: 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 30px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--glass-shadow);
             transition: var(--transition);
             text-align: center;
             opacity: 0;
             transform: translateY(50px);
+            border: 1px solid var(--glass-border);
         }
         
         .service-card.visible {
@@ -409,9 +454,6 @@
         
         .about-image {
             width: 45%;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
             opacity: 0;
             transform: translateX(-50px);
         }
@@ -425,6 +467,12 @@
             width: 50%;
             opacity: 0;
             transform: translateX(50px);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
         }
         
         .about-text.visible {
@@ -457,13 +505,14 @@
         }
         
         .portfolio-item {
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             position: relative;
             height: 250px;
             box-shadow: var(--shadow);
             opacity: 0;
             transform: scale(0.8);
+            border: 1px solid var(--glass-border);
         }
         
         .portfolio-item.visible {
@@ -484,13 +533,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(26, 115, 232, 0.9);
+            background: rgba(26, 115, 232, 0.85);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
         
         .portfolio-item:hover .portfolio-overlay {
@@ -523,10 +573,22 @@
         
         .contact-info {
             width: 40%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
         }
         
         .contact-form {
             width: 60%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
         }
         
         .info-item {
@@ -556,22 +618,24 @@
         .form-input {
             width: 100%;
             padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
             font-family: 'Poppins', sans-serif;
-            background: var(--white);
+            background: var(--glass-bg);
             color: var(--text);
             transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
         
         .dark-mode .form-input {
-            border-color: #444;
+            border-color: var(--glass-border);
         }
         
         .form-input:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
             outline: none;
+            background: rgba(255, 255, 255, 0.15);
         }
         
         textarea.form-input {
@@ -644,6 +708,8 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .social-link:hover {
@@ -737,6 +803,10 @@
             .float-1, .float-2, .float-3 {
                 display: none;
             }
+            
+            .hero-text, .about-text, .contact-info, .contact-form {
+                padding: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -768,10 +838,12 @@
                 transition: 0.3s;
                 box-shadow: var(--shadow);
                 padding: 20px 0;
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.9);
             }
             
             .dark-mode .nav-menu {
-                background: var(--dark-card);
+                background: rgba(30, 30, 30, 0.9);
             }
             
             .nav-menu.active {
@@ -796,6 +868,11 @@
             
             .services, .about, .portfolio, .contact {
                 padding: 80px 0;
+            }
+            
+            .service-card, .portfolio-item {
+                opacity: 1;
+                transform: none;
             }
         }
         
@@ -822,9 +899,8 @@
                 font-size: 1.8rem;
             }
             
-            .service-card, .portfolio-item {
-                opacity: 1;
-                transform: none;
+            .hero-text, .about-text, .contact-info, .contact-form {
+                padding: 20px;
             }
         }
     </style>
@@ -860,7 +936,6 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <canvas id="heroCanvas" class="canvas-background"></canvas>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -875,7 +950,9 @@
                     <div class="floating-element float-1"></div>
                     <div class="floating-element float-2"></div>
                     <div class="floating-element float-3"></div>
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Desarrollo Web" style="width:100%; border-radius:10px; box-shadow:var(--shadow)">
+                    <div class="glass-image">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Desarrollo Web">
+                    </div>
                 </div>
             </div>
         </div>
@@ -883,7 +960,6 @@
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <canvas id="servicesCanvas" class="canvas-background"></canvas>
         <div class="container">
             <div class="section-title">
                 <h2>Nuestros Servicios</h2>
@@ -944,11 +1020,12 @@
 
     <!-- About Section -->
     <section class="about" id="about">
-        <canvas id="aboutCanvas" class="canvas-background"></canvas>
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Equipo W360" style="width:100%">
+                    <div class="glass-image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Equipo W360">
+                    </div>
                 </div>
                 
                 <div class="about-text">
@@ -964,7 +1041,6 @@
 
     <!-- Portfolio Section -->
     <section class="portfolio" id="portfolio">
-        <canvas id="portfolioCanvas" class="canvas-background"></canvas>
         <div class="container">
             <div class="section-title">
                 <h2>Nuestros Trabajos</h2>
@@ -1001,7 +1077,6 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <canvas id="contactCanvas" class="canvas-background"></canvas>
         <div class="container">
             <div class="section-title">
                 <h2>Contáctanos</h2>
@@ -1075,7 +1150,6 @@
 
     <!-- Footer -->
     <footer>
-        <canvas id="footerCanvas" class="canvas-background"></canvas>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
@@ -1132,9 +1206,6 @@
                 themeIcon.classList.add('fa-moon');
                 localStorage.setItem('theme', 'light');
             }
-            
-            // Update canvas animations for new theme
-            initCanvasAnimations();
         });
         
         // Check for saved theme preference
@@ -1191,279 +1262,6 @@
             alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
             this.reset();
         });
-        
-        // Canvas Animations
-        function initCanvasAnimations() {
-            const canvases = {
-                hero: document.getElementById('heroCanvas'),
-                services: document.getElementById('servicesCanvas'),
-                about: document.getElementById('aboutCanvas'),
-                portfolio: document.getElementById('portfolioCanvas'),
-                contact: document.getElementById('contactCanvas'),
-                footer: document.getElementById('footerCanvas')
-            };
-            
-            // Set canvas sizes
-            for (const key in canvases) {
-                if (canvases[key]) {
-                    const canvas = canvases[key];
-                    const container = canvas.parentElement;
-                    canvas.width = container.offsetWidth;
-                    canvas.height = container.offsetHeight;
-                }
-            }
-            
-            // Hero Canvas - Floating particles
-            if (canvases.hero) {
-                const ctx = canvases.hero.getContext('2d');
-                const particles = [];
-                const particleCount = 80;
-                const colors = document.body.classList.contains('dark-mode') 
-                    ? ['rgba(26, 115, 232, 0.5)', 'rgba(255, 145, 0, 0.5)', 'rgba(13, 71, 161, 0.5)'] 
-                    : ['rgba(26, 115, 232, 0.3)', 'rgba(255, 145, 0, 0.3)', 'rgba(13, 71, 161, 0.3)'];
-                
-                // Create particles
-                for (let i = 0; i < particleCount; i++) {
-                    particles.push({
-                        x: Math.random() * canvases.hero.width,
-                        y: Math.random() * canvases.hero.height,
-                        radius: Math.random() * 4 + 1,
-                        color: colors[Math.floor(Math.random() * colors.length)],
-                        speedX: Math.random() * 0.5 - 0.25,
-                        speedY: Math.random() * 0.5 - 0.25
-                    });
-                }
-                
-                // Animation loop
-                function animate() {
-                    ctx.clearRect(0, 0, canvases.hero.width, canvases.hero.height);
-                    
-                    particles.forEach(particle => {
-                        ctx.beginPath();
-                        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = particle.color;
-                        ctx.fill();
-                        
-                        // Move particles
-                        particle.x += particle.speedX;
-                        particle.y += particle.speedY;
-                        
-                        // Bounce off edges
-                        if (particle.x < 0 || particle.x > canvases.hero.width) {
-                            particle.speedX = -particle.speedX;
-                        }
-                        if (particle.y < 0 || particle.y > canvases.hero.height) {
-                            particle.speedY = -particle.speedY;
-                        }
-                    });
-                    
-                    requestAnimationFrame(animate);
-                }
-                
-                animate();
-                
-                // Resize handler
-                window.addEventListener('resize', () => {
-                    canvases.hero.width = canvases.hero.parentElement.offsetWidth;
-                    canvases.hero.height = canvases.hero.parentElement.offsetHeight;
-                });
-            }
-            
-            // Services Canvas - Connecting dots
-            if (canvases.services) {
-                const ctx = canvases.services.getContext('2d');
-                const dots = [];
-                const dotCount = 30;
-                
-                // Create dots
-                for (let i = 0; i < dotCount; i++) {
-                    dots.push({
-                        x: Math.random() * canvases.services.width,
-                        y: Math.random() * canvases.services.height,
-                        radius: Math.random() * 2 + 1,
-                        color: document.body.classList.contains('dark-mode') 
-                            ? 'rgba(255, 255, 255, 0.1)' 
-                            : 'rgba(0, 0, 0, 0.1)'
-                    });
-                }
-                
-                // Animation loop
-                function animate() {
-                    ctx.clearRect(0, 0, canvases.services.width, canvases.services.height);
-                    
-                    // Draw connecting lines
-                    dots.forEach((dot1, i) => {
-                        dots.forEach((dot2, j) => {
-                            if (i !== j) {
-                                const dx = dot1.x - dot2.x;
-                                const dy = dot1.y - dot2.y;
-                                const dist = Math.sqrt(dx * dx + dy * dy);
-                                
-                                if (dist < 100) {
-                                    ctx.beginPath();
-                                    ctx.strokeStyle = document.body.classList.contains('dark-mode') 
-                                        ? `rgba(255, 255, 255, ${0.1 - dist/1000})` 
-                                        : `rgba(0, 0, 0, ${0.1 - dist/1000})`;
-                                    ctx.lineWidth = 0.5;
-                                    ctx.moveTo(dot1.x, dot1.y);
-                                    ctx.lineTo(dot2.x, dot2.y);
-                                    ctx.stroke();
-                                }
-                            }
-                        });
-                    });
-                    
-                    // Draw dots
-                    dots.forEach(dot => {
-                        ctx.beginPath();
-                        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = dot.color;
-                        ctx.fill();
-                        
-                        // Move dots slightly
-                        dot.x += (Math.random() - 0.5) * 0.5;
-                        dot.y += (Math.random() - 0.5) * 0.5;
-                        
-                        // Keep dots in canvas
-                        if (dot.x < 0) dot.x = canvases.services.width;
-                        if (dot.x > canvases.services.width) dot.x = 0;
-                        if (dot.y < 0) dot.y = canvases.services.height;
-                        if (dot.y > canvases.services.height) dot.y = 0;
-                    });
-                    
-                    requestAnimationFrame(animate);
-                }
-                
-                animate();
-                
-                // Resize handler
-                window.addEventListener('resize', () => {
-                    canvases.services.width = canvases.services.parentElement.offsetWidth;
-                    canvases.services.height = canvases.services.parentElement.offsetHeight;
-                });
-            }
-            
-            // About Canvas - Wave effect
-            if (canvases.about) {
-                const ctx = canvases.about.getContext('2d');
-                let time = 0;
-                
-                function animate() {
-                    ctx.clearRect(0, 0, canvases.about.width, canvases.about.height);
-                    
-                    // Draw wave
-                    ctx.beginPath();
-                    ctx.moveTo(0, canvases.about.height / 2);
-                    
-                    for (let x = 0; x < canvases.about.width; x++) {
-                        const y = canvases.about.height / 2 + Math.sin(x * 0.01 + time) * 20;
-                        ctx.lineTo(x, y);
-                    }
-                    
-                    ctx.lineTo(canvases.about.width, canvases.about.height);
-                    ctx.lineTo(0, canvases.about.height);
-                    ctx.closePath();
-                    
-                    ctx.fillStyle = document.body.classList.contains('dark-mode') 
-                        ? 'rgba(26, 115, 232, 0.1)' 
-                        : 'rgba(26, 115, 232, 0.05)';
-                    ctx.fill();
-                    
-                    time += 0.05;
-                    
-                    requestAnimationFrame(animate);
-                }
-                
-                animate();
-                
-                // Resize handler
-                window.addEventListener('resize', () => {
-                    canvases.about.width = canvases.about.parentElement.offsetWidth;
-                    canvases.about.height = canvases.about.parentElement.offsetHeight;
-                });
-            }
-            
-            // Portfolio Canvas - Geometric shapes
-            if (canvases.portfolio) {
-                const ctx = canvases.portfolio.getContext('2d');
-                const shapes = [];
-                const shapeCount = 10;
-                
-                // Create shapes
-                for (let i = 0; i < shapeCount; i++) {
-                    shapes.push({
-                        x: Math.random() * canvases.portfolio.width,
-                        y: Math.random() * canvases.portfolio.height,
-                        size: Math.random() * 30 + 10,
-                        rotation: Math.random() * Math.PI * 2,
-                        rotationSpeed: (Math.random() - 0.5) * 0.02,
-                        type: Math.floor(Math.random() * 3), // 0: triangle, 1: square, 2: circle
-                        color: document.body.classList.contains('dark-mode') 
-                            ? `rgba(255, 145, 0, ${Math.random() * 0.2 + 0.1})` 
-                            : `rgba(255, 145, 0, ${Math.random() * 0.1 + 0.05})`
-                    });
-                }
-                
-                function animate() {
-                    ctx.clearRect(0, 0, canvases.portfolio.width, canvases.portfolio.height);
-                    
-                    shapes.forEach(shape => {
-                        ctx.save();
-                        ctx.translate(shape.x, shape.y);
-                        ctx.rotate(shape.rotation);
-                        
-                        ctx.fillStyle = shape.color;
-                        
-                        if (shape.type === 0) {
-                            // Triangle
-                            ctx.beginPath();
-                            ctx.moveTo(0, -shape.size);
-                            ctx.lineTo(-shape.size, shape.size);
-                            ctx.lineTo(shape.size, shape.size);
-                            ctx.closePath();
-                            ctx.fill();
-                        } else if (shape.type === 1) {
-                            // Square
-                            ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
-                        } else {
-                            // Circle
-                            ctx.beginPath();
-                            ctx.arc(0, 0, shape.size / 2, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                        
-                        ctx.restore();
-                        
-                        // Update rotation
-                        shape.rotation += shape.rotationSpeed;
-                        
-                        // Move slowly
-                        shape.x += (Math.random() - 0.5) * 0.3;
-                        shape.y += (Math.random() - 0.5) * 0.3;
-                        
-                        // Keep in canvas
-                        if (shape.x < -50) shape.x = canvases.portfolio.width + 50;
-                        if (shape.x > canvases.portfolio.width + 50) shape.x = -50;
-                        if (shape.y < -50) shape.y = canvases.portfolio.height + 50;
-                        if (shape.y > canvases.portfolio.height + 50) shape.y = -50;
-                    });
-                    
-                    requestAnimationFrame(animate);
-                }
-                
-                animate();
-                
-                // Resize handler
-                window.addEventListener('resize', () => {
-                    canvases.portfolio.width = canvases.portfolio.parentElement.offsetWidth;
-                    canvases.portfolio.height = canvases.portfolio.parentElement.offsetHeight;
-                });
-            }
-        }
-        
-        // Initialize canvas animations
-        window.addEventListener('load', initCanvasAnimations);
-        window.addEventListener('resize', initCanvasAnimations);
     </script>
 </body>
 </html>
