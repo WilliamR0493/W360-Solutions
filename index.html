@@ -289,6 +289,9 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--primary-dark);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
         }
         
         .dark-mode .hero-title {
@@ -299,11 +302,17 @@
             font-size: 1.2rem;
             margin-bottom: 30px;
             color: var(--text-light);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.8s;
         }
         
         .hero-buttons {
             display: flex;
             gap: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 1.1s;
         }
         
         /* Image Styling */
@@ -362,6 +371,12 @@
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .section-title.visible h2 {
+            animation: fadeInUp 0.8s ease forwards;
         }
         
         .dark-mode .section-title h2 {
@@ -384,12 +399,24 @@
             color: var(--text-light);
             max-width: 700px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
         }
         
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .section-title.visible p {
+            animation: fadeInUp 0.8s ease forwards 0.3s;
+        }
+        
+        /* Services Carousel */
+        .services-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .services-track {
+            display: flex;
+            transition: transform 0.5s ease;
         }
         
         .service-card {
@@ -400,18 +427,20 @@
             box-shadow: var(--glass-shadow);
             transition: var(--transition);
             text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
+            flex: 0 0 calc(33.333% - 20px);
+            margin: 0 10px;
             border: 1px solid var(--glass-border);
+            opacity: 0.7;
+            transform: scale(0.9);
         }
         
-        .service-card.visible {
+        .service-card.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1);
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
@@ -437,6 +466,27 @@
             color: var(--primary);
         }
         
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .carousel-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
         /* About Section */
         .about {
             padding: 100px 0;
@@ -459,8 +509,7 @@
         }
         
         .about-image.visible {
-            opacity: 1;
-            transform: translateX(0);
+            animation: fadeInLeft 1s ease forwards;
         }
         
         .about-text {
@@ -476,14 +525,19 @@
         }
         
         .about-text.visible {
-            opacity: 1;
-            transform: translateX(0);
+            animation: fadeInRight 1s ease forwards;
         }
         
         .about-title {
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: var(--primary-dark);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .about-text.visible .about-title {
+            animation: fadeInUp 0.8s ease forwards 0.3s;
         }
         
         .dark-mode .about-title {
@@ -518,6 +572,7 @@
         .portfolio-item.visible {
             opacity: 1;
             transform: scale(1);
+            animation: fadeInUp 0.8s ease;
         }
         
         .portfolio-image {
@@ -579,6 +634,12 @@
             border-radius: 15px;
             box-shadow: var(--glass-shadow);
             border: 1px solid var(--glass-border);
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        
+        .contact-info.visible {
+            animation: fadeInLeft 1s ease forwards;
         }
         
         .contact-form {
@@ -589,12 +650,36 @@
             border-radius: 15px;
             box-shadow: var(--glass-shadow);
             border: 1px solid var(--glass-border);
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        
+        .contact-form.visible {
+            animation: fadeInRight 1s ease forwards;
         }
         
         .info-item {
             display: flex;
             align-items: center;
             margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .contact-info.visible .info-item {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .contact-info.visible .info-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .contact-info.visible .info-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .contact-info.visible .info-item:nth-child(3) {
+            animation-delay: 0.6s;
         }
         
         .info-icon {
@@ -613,6 +698,28 @@
         .form-group {
             margin-bottom: 20px;
             position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .contact-form.visible .form-group {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .contact-form.visible .form-group:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .contact-form.visible .form-group:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .contact-form.visible .form-group:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .contact-form.visible .form-group:nth-child(4) {
+            animation-delay: 0.5s;
         }
         
         .form-input {
@@ -727,11 +834,22 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
         
@@ -783,6 +901,12 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .service-card {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero-content, .about-content, .contact-content {
                 flex-direction: column;
@@ -806,6 +930,10 @@
             
             .hero-text, .about-text, .contact-info, .contact-form {
                 padding: 30px;
+            }
+            
+            .service-card {
+                flex: 0 0 calc(100% - 20px);
             }
         }
         
@@ -874,6 +1002,20 @@
                 opacity: 1;
                 transform: none;
             }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-links h3:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -900,6 +1042,11 @@
             }
             
             .hero-text, .about-text, .contact-info, .contact-form {
+                padding: 20px;
+            }
+            
+            .service-card {
+                margin: 0 5px;
                 padding: 20px;
             }
         }
@@ -966,53 +1113,64 @@
                 <p>Ofrecemos soluciones digitales completas para potenciar tu presencia online y optimizar tus operaciones comerciales.</p>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+            <div class="services-carousel">
+                <div class="services-track" id="servicesTrack">
+                    <div class="service-card active">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="service-title">Desarrollo Web</h3>
+                        <p>Diseño y desarrollo de sitios web responsivos, modernos y optimizados para motores de búsqueda.</p>
                     </div>
-                    <h3 class="service-title">Desarrollo Web</h3>
-                    <p>Diseño y desarrollo de sitios web responsivos, modernos y optimizados para motores de búsqueda.</p>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cash-register"></i>
+                        </div>
+                        <h3 class="service-title">Sistemas POS</h3>
+                        <p>Sistemas punto de venta personalizados que se adaptan a las necesidades específicas de tu negocio.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="service-title">E-Commerce</h3>
+                        <p>Tiendas online completamente funcionales con pasarelas de pago y sistemas de gestión de inventario.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="service-title">Apps Móviles</h3>
+                        <p>Desarrollo de aplicaciones móviles nativas e híbridas para iOS y Android.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="service-title">Marketing Digital</h3>
+                        <p>Estrategias de marketing online para aumentar tu visibilidad y atraer más clientes.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="service-title">Hosting & Dominio</h3>
+                        <p>Servicios de hosting confiables y registro de dominios para mantener tu sitio siempre disponible.</p>
+                    </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cash-register"></i>
-                    </div>
-                    <h3 class="service-title">Sistemas POS</h3>
-                    <p>Sistemas punto de venta personalizados que se adaptan a las necesidades específicas de tu negocio.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3 class="service-title">E-Commerce</h3>
-                    <p>Tiendas online completamente funcionales con pasarelas de pago y sistemas de gestión de inventario.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="service-title">Apps Móviles</h3>
-                    <p>Desarrollo de aplicaciones móviles nativas e híbridas para iOS y Android.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">Marketing Digital</h3>
-                    <p>Estrategias de marketing online para aumentar tu visibilidad y atraer más clientes.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="service-title">Hosting & Dominio</h3>
-                    <p>Servicios de hosting confiables y registro de dominios para mantener tu sitio siempre disponible.</p>
+                <div class="carousel-nav" id="carouselNav">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                    <div class="carousel-dot" data-index="3"></div>
+                    <div class="carousel-dot" data-index="4"></div>
+                    <div class="carousel-dot" data-index="5"></div>
                 </div>
             </div>
         </div>
@@ -1239,9 +1397,69 @@
             }
         });
         
+        // Services Carousel
+        const servicesTrack = document.getElementById('servicesTrack');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const serviceCards = document.querySelectorAll('.service-card');
+        let currentIndex = 0;
+        let autoSlideInterval;
+        
+        function updateCarousel() {
+            const cardWidth = serviceCards[0].offsetWidth + 20; // width + margin
+            servicesTrack.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            
+            // Update active dot
+            carouselDots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Update active card
+            serviceCards.forEach((card, index) => {
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % serviceCards.length;
+            updateCarousel();
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // Initialize carousel
+        startAutoSlide();
+        
+        // Dot click events
+        carouselDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateCarousel();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+        });
+        
+        // Pause auto slide on hover
+        servicesTrack.addEventListener('mouseenter', stopAutoSlide);
+        servicesTrack.addEventListener('mouseleave', startAutoSlide);
+        
         // Scroll animations
         function checkVisibility() {
-            const elements = document.querySelectorAll('.service-card, .about-image, .about-text, .portfolio-item');
+            const elements = document.querySelectorAll('.section-title, .about-image, .about-text, .portfolio-item, .contact-info, .contact-form');
             
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -1262,6 +1480,10 @@
             alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
             this.reset();
         });
+        
+        // Initialize carousel on load
+        window.addEventListener('load', updateCarousel);
+        window.addEventListener('resize', updateCarousel);
     </script>
 </body>
 </html>
