@@ -1098,7 +1098,7 @@
      }
  }
 
-/* Botones de redes sociales flotantes - LADO DERECHO */
+/* Botones de redes sociales flotantes - LADO DERECHO (Desktop) */
 .social-floating {
     position: fixed;
     right: 20px;
@@ -1202,31 +1202,33 @@
     right: 65px;
 }
 
-/* VERSIÓN MÓVIL PROFESIONAL */
+/* VERSIÓN MÓVIL - BOTONES EN PARTE INFERIOR */
 @media (max-width: 992px) {
     .social-floating {
-        right: 15px;
-        left: auto;
+        right: 50%;
+        left: 50%;
         top: auto;
-        bottom: 90px; /* Espacio sobre el botón de tema */
-        transform: none;
-        flex-direction: column;
-        border-radius: 25px;
-        padding: 12px 8px;
-        gap: 12px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        bottom: 20px;
+        transform: translateX(50%);
+        flex-direction: row;
+        border-radius: 50px;
+        padding: 10px 20px;
+        gap: 15px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        width: auto;
+        max-width: 90%;
     }
     
     .dark-mode .social-floating {
-        background: rgba(30, 30, 30, 0.85);
+        background: rgba(30, 30, 30, 0.9);
     }
     
     .social-float {
         width: 45px;
         height: 45px;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     /* Ocultar tooltips en móviles */
@@ -1241,33 +1243,40 @@
     
     /* Ajustar para no interferir con el botón de tema */
     .theme-toggle {
-        bottom: 25px;
-        right: 25px;
-        width: 55px;
-        height: 55px;
+        bottom: 90px;
+        right: 20px;
     }
 }
 
 /* Ajustes para tablets */
 @media (max-width: 992px) and (min-width: 768px) {
     .social-floating {
+        bottom: 25px;
+    }
+    
+    .theme-toggle {
         bottom: 100px;
-        right: 20px;
     }
 }
 
 /* Ajustes para móviles muy pequeños */
 @media (max-width: 380px) {
     .social-floating {
-        bottom: 80px;
-        right: 10px;
-        padding: 10px 6px;
+        padding: 8px 15px;
         gap: 10px;
+        bottom: 15px;
     }
     
     .social-float {
         width: 40px;
         height: 40px;
         font-size: 1.1rem;
+    }
+    
+    .theme-toggle {
+        bottom: 80px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
     }
 }
