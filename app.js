@@ -1,4 +1,12 @@
+<<<<<<< HEAD
  // Theme Toggle
+=======
+<<<<<<< HEAD
+// Theme Toggle
+=======
+ // Theme Toggle
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         
@@ -14,9 +22,18 @@
                 themeIcon.classList.add('fa-moon');
                 localStorage.setItem('theme', 'light');
             }
+<<<<<<< HEAD
             
             // Update canvas animations for new theme
             initCanvasAnimations();
+=======
+<<<<<<< HEAD
+=======
+            
+            // Update canvas animations for new theme
+            initCanvasAnimations();
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
         });
         
         // Check for saved theme preference
@@ -50,6 +67,14 @@
             }
         });
         
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        // Scroll animations
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.section-title, .service-card, .about-image, .about-text, .portfolio-item, .contact-info, .contact-form');
+=======
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
         // Services Carousel
         const servicesTrack = document.getElementById('servicesTrack');
         const carouselDots = document.querySelectorAll('.carousel-dot');
@@ -113,6 +138,10 @@
         // Scroll animations
         function checkVisibility() {
             const elements = document.querySelectorAll('.section-title, .about-image, .about-text, .portfolio-item, .contact-info, .contact-form');
+<<<<<<< HEAD
+=======
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
             
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -198,6 +227,11 @@
                 
                 setInterval(draw, 33);
             }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
             
             // Services Canvas - Network Nodes
             if (canvases.services) {
@@ -327,12 +361,27 @@
                 
                 draw();
             }
+<<<<<<< HEAD
+=======
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
         }
         
         // Initialize canvas animations
         window.addEventListener('load', initCanvasAnimations);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        window.addEventListener('resize', initCanvasAnimations);
+=======
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
         window.addEventListener('resize', initCanvasAnimations);
         
         // Initialize carousel on load
         window.addEventListener('load', updateCarousel);
+<<<<<<< HEAD
         window.addEventListener('resize', updateCarousel);
+=======
+        window.addEventListener('resize', updateCarousel);
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
+>>>>>>> 7410d82395fd96ababb5d18277dafd504fadce59
