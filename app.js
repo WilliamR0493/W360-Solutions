@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Theme Toggle
+=======
+ // Theme Toggle
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         
@@ -14,6 +18,12 @@
                 themeIcon.classList.add('fa-moon');
                 localStorage.setItem('theme', 'light');
             }
+<<<<<<< HEAD
+=======
+            
+            // Update canvas animations for new theme
+            initCanvasAnimations();
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
         });
         
         // Check for saved theme preference
@@ -47,9 +57,75 @@
             }
         });
         
+<<<<<<< HEAD
         // Scroll animations
         function checkVisibility() {
             const elements = document.querySelectorAll('.section-title, .service-card, .about-image, .about-text, .portfolio-item, .contact-info, .contact-form');
+=======
+        // Services Carousel
+        const servicesTrack = document.getElementById('servicesTrack');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const serviceCards = document.querySelectorAll('.service-card');
+        let currentIndex = 0;
+        let autoSlideInterval;
+        
+        function updateCarousel() {
+            const cardWidth = serviceCards[0].offsetWidth + 30; // width + margin
+            servicesTrack.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            
+            // Update active dot
+            carouselDots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Update active card
+            serviceCards.forEach((card, index) => {
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % serviceCards.length;
+            updateCarousel();
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // Initialize carousel
+        startAutoSlide();
+        
+        // Dot click events
+        carouselDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateCarousel();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+        });
+        
+        // Pause auto slide on hover
+        servicesTrack.addEventListener('mouseenter', stopAutoSlide);
+        servicesTrack.addEventListener('mouseleave', startAutoSlide);
+        
+        // Scroll animations
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.section-title, .about-image, .about-text, .portfolio-item, .contact-info, .contact-form');
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
             
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -135,8 +211,148 @@
                 
                 setInterval(draw, 33);
             }
+<<<<<<< HEAD
+=======
+            
+            // Services Canvas - Network Nodes
+            if (canvases.services) {
+                const ctx = canvases.services.getContext('2d');
+                const nodes = [];
+                const nodeCount = 25;
+                
+                // Create nodes
+                for (let i = 0; i < nodeCount; i++) {
+                    nodes.push({
+                        x: Math.random() * canvases.services.width,
+                        y: Math.random() * canvases.services.height,
+                        radius: Math.random() * 3 + 1,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5
+                    });
+                }
+                
+                function draw() {
+                    ctx.clearRect(0, 0, canvases.services.width, canvases.services.height);
+                    
+                    // Draw connections
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x;
+                            const dy = nodes[i].y - nodes[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            
+                            if (dist < 150) {
+                                ctx.beginPath();
+                                ctx.strokeStyle = document.body.classList.contains('dark-mode') 
+                                    ? `rgba(255, 145, 0, ${0.2 - dist/750})` 
+                                    : `rgba(26, 115, 232, ${0.2 - dist/750})`;
+                                ctx.lineWidth = 0.5;
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    
+                    // Draw nodes
+                    for (let i = 0; i < nodes.length; i++) {
+                        ctx.beginPath();
+                        ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
+                        ctx.fillStyle = document.body.classList.contains('dark-mode') 
+                            ? 'rgba(255, 145, 0, 0.8)' 
+                            : 'rgba(26, 115, 232, 0.6)';
+                        ctx.fill();
+                        
+                        // Update node position
+                        nodes[i].x += nodes[i].vx;
+                        nodes[i].y += nodes[i].vy;
+                        
+                        // Bounce off edges
+                        if (nodes[i].x < 0 || nodes[i].x > canvases.services.width) {
+                            nodes[i].vx = -nodes[i].vx;
+                        }
+                        if (nodes[i].y < 0 || nodes[i].y > canvases.services.height) {
+                            nodes[i].vy = -nodes[i].vy;
+                        }
+                    }
+                    
+                    requestAnimationFrame(draw);
+                }
+                
+                draw();
+            }
+            
+            // About Canvas - Circuit Board Effect
+            if (canvases.about) {
+                const ctx = canvases.about.getContext('2d');
+                const points = [];
+                const pointCount = 50;
+                let time = 0;
+                
+                // Create points
+                for (let i = 0; i < pointCount; i++) {
+                    points.push({
+                        x: Math.random() * canvases.about.width,
+                        y: Math.random() * canvases.about.height,
+                        size: Math.random() * 2 + 1
+                    });
+                }
+                
+                function draw() {
+                    ctx.clearRect(0, 0, canvases.about.width, canvases.about.height);
+                    
+                    // Draw connections
+                    ctx.strokeStyle = document.body.classList.contains('dark-mode') 
+                        ? 'rgba(26, 115, 232, 0.3)' 
+                        : 'rgba(26, 115, 232, 0.2)';
+                    ctx.lineWidth = 1;
+                    
+                    for (let i = 0; i < points.length; i++) {
+                        for (let j = i + 1; j < points.length; j++) {
+                            const dx = points[i].x - points[j].x;
+                            const dy = points[i].y - points[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            
+                            if (dist < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(points[i].x, points[i].y);
+                                ctx.lineTo(points[j].x, points[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    
+                    // Draw points
+                    for (let i = 0; i < points.length; i++) {
+                        ctx.beginPath();
+                        ctx.arc(points[i].x, points[i].y, points[i].size, 0, Math.PI * 2);
+                        ctx.fillStyle = document.body.classList.contains('dark-mode') 
+                            ? 'rgba(255, 145, 0, 0.8)' 
+                            : 'rgba(26, 115, 232, 0.6)';
+                        ctx.fill();
+                        
+                        // Animate points slightly
+                        points[i].x += Math.sin(time + i) * 0.3;
+                        points[i].y += Math.cos(time + i) * 0.3;
+                    }
+                    
+                    time += 0.01;
+                    requestAnimationFrame(draw);
+                }
+                
+                draw();
+            }
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
         }
         
         // Initialize canvas animations
         window.addEventListener('load', initCanvasAnimations);
+<<<<<<< HEAD
         window.addEventListener('resize', initCanvasAnimations);
+=======
+        window.addEventListener('resize', initCanvasAnimations);
+        
+        // Initialize carousel on load
+        window.addEventListener('load', updateCarousel);
+        window.addEventListener('resize', updateCarousel);
+>>>>>>> f722e7a668cd1d1357391c0f26bfcda8237a3e59
