@@ -1098,7 +1098,7 @@
      }
  }
 
-/* Botones de redes sociales flotantes - LADO DERECHO (Desktop) */
+/* Botones de redes sociales flotantes - LADO DERECHO */
 .social-floating {
     position: fixed;
     right: 20px;
@@ -1245,17 +1245,6 @@
     .theme-toggle {
         bottom: 90px;
         right: 20px;
-    }
-}
-
-/* Ajustes para tablets */
-@media (max-width: 992px) and (min-width: 768px) {
-    .social-floating {
-        bottom: 25px;
-    }
-    
-    .theme-toggle {
-        bottom: 100px;
     }
 }
 
