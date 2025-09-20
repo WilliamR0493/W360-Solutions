@@ -1098,7 +1098,224 @@
      }
  }
 
-/* Botones de redes sociales flotantes - LADO DERECHO */
+ .social-floating {
+     position: fixed;
+     left: 20px;
+     top: 50%;
+     transform: translateY(-50%);
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+     z-index: 998;
+     background: var(--glass-bg);
+     backdrop-filter: blur(10px);
+     padding: 15px 10px;
+     border-radius: 50px;
+     box-shadow: var(--glass-shadow);
+     border: 1px solid var(--glass-border);
+     transition: var(--transition);
+ }
+
+ .social-float {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: var(--white);
+     font-size: 1.4rem;
+     transition: var(--transition);
+     position: relative;
+ }
+
+ .social-float.whatsapp {
+     background: #25D366;
+ }
+
+ .social-float.facebook {
+     background: #3b5998;
+ }
+
+ .social-float.tiktok {
+     background: #000000;
+ }
+
+ .social-float.linkedin {
+     background: #0077B5;
+ }
+
+ .social-float:hover {
+     transform: translateY(-5px) scale(1.1);
+ }
+
+ .social-float::after {
+     content: '';
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     background: inherit;
+     opacity: 0.5;
+     z-index: -1;
+     animation: pulse 2s infinite;
+ }
+
+ @keyframes pulse {
+     0% {
+         transform: scale(1);
+         opacity: 0.5;
+     }
+
+     100% {
+         transform: scale(1.8);
+         opacity: 0;
+     }
+ }
+
+ /* Tooltip para los botones */
+ .social-float .tooltip {
+     position: absolute;
+     left: 60px;
+     top: 50%;
+     transform: translateY(-50%);
+     background: var(--text);
+     color: var(--white);
+     padding: 5px 10px;
+     border-radius: 4px;
+     font-size: 0.8rem;
+     white-space: nowrap;
+     opacity: 0;
+     visibility: hidden;
+     transition: var(--transition);
+     pointer-events: none;
+ }
+
+ .social-float .tooltip::before {
+     content: '';
+     position: absolute;
+     left: -5px;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 0;
+     height: 0;
+     border-top: 5px solid transparent;
+     border-bottom: 5px solid transparent;
+     border-right: 5px solid var(--text);
+ }
+
+ .social-float:hover .tooltip {
+     opacity: 1;
+     visibility: visible;
+     left: 65px;
+ }
+
+ /* Responsive: ocultar en móviles o mostrar de forma diferente */
+ /* Botones de redes sociales flotantes - LADO DERECHO */
+ .social-floating {
+     position: fixed;
+     right: 20px;
+     /* Cambiado de left a right */
+     left: auto;
+     /* Aseguramos que no hay left definido */
+     top: 50%;
+     transform: translateY(-50%);
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+     z-index: 998;
+     background: var(--glass-bg);
+     backdrop-filter: blur(10px);
+     padding: 15px 10px;
+     border-radius: 50px;
+     box-shadow: var(--glass-shadow);
+     border: 1px solid var(--glass-border);
+     transition: var(--transition);
+ }
+
+ /* Ajustar tooltips para lado derecho */
+ .social-float .tooltip {
+     right: 60px;
+     /* Cambiado de left a right */
+     left: auto;
+     /* Aseguramos que no hay left definido */
+     top: 50%;
+     transform: translateY(-50%);
+     background: var(--text);
+     color: var(--white);
+     padding: 5px 10px;
+     border-radius: 4px;
+     font-size: 0.8rem;
+     white-space: nowrap;
+     opacity: 0;
+     visibility: hidden;
+     transition: var(--transition);
+     pointer-events: none;
+ }
+
+ .social-float .tooltip::before {
+     content: '';
+     position: absolute;
+     right: -5px;
+     /* Cambiado de left a right */
+     left: auto;
+     /* Aseguramos que no hay left definido */
+     top: 50%;
+     transform: translateY(-50%);
+     width: 0;
+     height: 0;
+     border-top: 5px solid transparent;
+     border-bottom: 5px solid transparent;
+     border-left: 5px solid var(--text);
+     /* Cambiado de border-right a border-left */
+     border-right: none;
+ }
+
+ .social-float:hover .tooltip {
+     opacity: 1;
+     visibility: visible;
+     right: 65px;
+     /* Cambiado de left a right */
+     left: auto;
+     /* Aseguramos que no hay left definido */
+ }
+
+ /* Responsive: para móviles */
+ @media (max-width: 992px) {
+     .social-floating {
+         right: 50%;
+         /* Cambiado de left a right */
+         left: 50%;
+         /* Centrado horizontalmente */
+         transform: translateX(50%);
+         /* Ajustado para centrado */
+         bottom: 80px;
+         top: auto;
+         flex-direction: row;
+         border-radius: 50px;
+         padding: 10px 15px;
+     }
+
+     .social-float .tooltip {
+         right: 50%;
+         /* Centrado */
+         left: 50%;
+         /* Centrado */
+         transform: translateX(50%);
+         /* Centrado */
+         top: -40px;
+     }
+
+     .social-float:hover .tooltip {
+         right: 50%;
+         /* Centrado */
+         left: 50%;
+         /* Centrado */
+         top: -45px;
+     }
+ }
+
+ /* Botones de redes sociales flotantes - LADO DERECHO */
 .social-floating {
     position: fixed;
     right: 20px;
